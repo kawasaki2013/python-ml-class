@@ -2,13 +2,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-def error(t0, t1, x, y):
-    return t0 + t1*x - y
-
 def cost(t0, t1, x, y):
-    # sum of squared errors
-    sse = sum([error(t0, t1, x[i], y[i])**2 for i in range(len(x))])
-    return sse/(2*len(x))
+    errors = t0 + t1*x - y
+    return np.sum(errors**2)/(2*x.shape[0]) 
 
 
 data = pd.read_csv('./ex1/data1.txt', names=['x', 'y'])
